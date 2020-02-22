@@ -96,18 +96,27 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        self.move_right()
-        self.swap_item()
-        print(self._item)
-        self.move_right()
-        self.move_right()
-        if self.compare_item == -1:
-            self.swap_item()
-        else:
-            self.move_right()
-        print(self._item)
-
+        print(type(l), type(sorted(l)))
+        while l != sorted(l):
+            for i in range(len(l)):
+                if self.compare_item() == None:
+                    self.swap_item()
+                    self.move_right()
+                    print(i)
+                elif self.compare_item() == 1:
+                    self.move_right()
+                    print(i)
+                elif self.compare_item() == -1:
+                    self.swap_item()
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+                    print(i)
+                else:
+                    self.move_right()
+                    print(self._position)
+                    print(i)
+            print(self._item)
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
@@ -118,4 +127,5 @@ if __name__ == "__main__":
     robot = SortingRobot(l)
 
     robot.sort()
+
     print(robot._list)
